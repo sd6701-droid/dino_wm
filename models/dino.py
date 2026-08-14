@@ -7,7 +7,11 @@ class DinoV2Encoder(nn.Module):
     def __init__(self, name, feature_key):
         super().__init__()
         self.name = name
-        self.base_model = torch.hub.load("facebookresearch/dinov2", name)
+        # Pin to a pre-2025 commit: dinov2 main now uses PEP 604 unions (X | None),
+        # which fail at import time on Python 3.9.
+        self.base_model = torch.hub.load(
+            "facebookresearch/dinov2:e1277af2ba9496fbadf7aec6eba56e8d882d1e35", name
+        )
         self.feature_key = feature_key
         self.emb_dim = self.base_model.num_features
         if feature_key == "x_norm_patchtokens":
