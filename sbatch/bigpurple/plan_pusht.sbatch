@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=a100_short
+#SBATCH --partition=gl40s_short
 #SBATCH --gres=gpu:1
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -10,12 +10,12 @@
 #SBATCH --output=/gpfs/scratch/sd6701/personal/salt/dino_wm/logs/%x_%j.log
 #SBATCH --error=/gpfs/scratch/sd6701/personal/salt/dino_wm/logs/%x_%j.err
 
-# Evaluates the shared PushT checkpoint with CEM inside MPC (conf/plan_pusht.yaml), 1xA100.
+# Evaluates the shared PushT checkpoint with CEM inside MPC (conf/plan_pusht.yaml), 1xL40S.
 # The checkpoint has no encoder, so plan.py loads dinov2_vits14 from torch.hub.
 # sbatch needs the logs folder to exist before the job starts: mkdir -p logs
 #
 # Test (5 tasks):
-#   sbatch --partition=a100_dev --time=00:30:00 --export=ALL,N_EVALS=5 \
+#   sbatch --partition=gl40s_dev --time=00:30:00 --export=ALL,N_EVALS=5 \
 #     sbatch/bigpurple/plan_pusht.sbatch
 #
 # Full evaluation (50 tasks):
