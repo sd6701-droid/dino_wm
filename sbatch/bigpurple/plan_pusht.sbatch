@@ -32,8 +32,11 @@ export PYTHONNOUSERSITE=1
 # Home is over its file quota: keep caches and W&B files on scratch.
 export XDG_CACHE_HOME=/gpfs/scratch/sd6701/.cache
 export TORCH_HOME=/gpfs/scratch/sd6701/.cache/torch
+export XDG_CONFIG_HOME=/gpfs/scratch/sd6701/.config
 export WANDB_DIR=/gpfs/scratch/sd6701/wandb
-mkdir -p "$WANDB_DIR"
+export WANDB_CONFIG_DIR=/gpfs/scratch/sd6701/.config/wandb
+export WANDB_CACHE_DIR=/gpfs/scratch/sd6701/.cache/wandb
+mkdir -p "$WANDB_DIR" "$WANDB_CONFIG_DIR" "$WANDB_CACHE_DIR"
 export DATASET_DIR=/gpfs/scratch/sd6701/personal/salt/datasets/dinowm_dataset
 export HYDRA_FULL_ERROR=1
 
