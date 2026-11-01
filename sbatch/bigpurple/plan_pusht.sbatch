@@ -41,6 +41,6 @@ export DATASET_DIR=/gpfs/scratch/sd6701/personal/salt/datasets/dinowm_dataset
 export HYDRA_FULL_ERROR=1
 
 python plan.py --config-name plan_pusht.yaml \
-  ckpt_base_path=/gpfs/scratch/sd6701/dino_wm_ckpts \
+  ckpt_base_path=/gpfs/scratch/sd6701/personal/salt/dino_wm_checkpoints \
   model_name=pusht \
   n_evals="${N_EVALS:-50}"
