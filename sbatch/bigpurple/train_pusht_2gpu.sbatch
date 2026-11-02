@@ -55,7 +55,7 @@ python -m accelerate.commands.launch \
   train.py --config-name train.yaml \
   ckpt_base_path="${CKPT_BASE}" \
   env=pusht \
-  encoder=dino \
+  encoder="${ENCODER:-dino}" \
   frameskip=5 \
   num_hist=3 \
   training.batch_size="${BATCH_SIZE:-16}" \
