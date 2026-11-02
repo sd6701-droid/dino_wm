@@ -47,7 +47,7 @@ RUN_DIR="${RUN_DIR:-${CKPT_BASE}/outputs/$(date +%Y-%m-%d)/job_${SLURM_JOB_ID}}"
 # Each process starts its own data workers, so 8 per process uses the 16 CPUs.
 python -m accelerate.commands.launch \
   --multi_gpu \
-  --num_processes 2 \
+  --num_processes "${NUM_GPUS:-2}" \
   --num_machines 1 \
   --mixed_precision no \
   --dynamo_backend no \
