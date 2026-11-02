@@ -106,8 +106,8 @@ class Trainer:
             OmegaConf.set_struct(cfg, False)
             cfg.wandb_run_id = self.wandb_run.id
             OmegaConf.set_struct(cfg, True)
-            # e.g. "NVIDIA L40S" -> "l40s", "Tesla V100-SXM2-16GB" -> "v100"
-            gpu_type = torch.cuda.get_device_name().split()[-1].split("-")[0].lower()
+            # e.g. "NVIDIA L40S" -> "l40s", "NVIDIA A100 80GB PCIe" -> "a100", "Tesla V100-SXM2-16GB" -> "v100"
+            gpu_type = torch.cuda.get_device_name().split()[1].split("-")[0].lower()
             encoder_name = self.cfg.encoder.get("name", "encoder")
             num_gpus = self.accelerator.num_processes
             wandb.run.name = f"dinowm_{encoder_name}_{num_gpus}x{gpu_type}_{model_name}"
