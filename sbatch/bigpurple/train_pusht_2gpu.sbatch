@@ -16,6 +16,12 @@
 # Test (50 rollouts, 1 epoch):
 #   sbatch --time=01:00:00 --export=ALL,N_ROLLOUT=50,EPOCHS=1,WANDB_MODE=online \
 #     sbatch/bigpurple/train_pusht_2gpu.sbatch
+#
+# ENCODER picks conf/encoder/<name>.yaml: dino (default), vjepa_student, or vit_random
+# (frozen ViT-S/14, random weights, seeded by init_seed so plan.py rebuilds the same encoder).
+# 3 L40S, 8 per GPU:
+#   sbatch --partition=gl40s_short --gres=gpu:3 --time=12:00:00 --job-name=train_pusht_random \
+#     --export=ALL,ENCODER=vit_random,NUM_GPUS=3,BATCH_SIZE=24 sbatch/bigpurple/train_pusht_2gpu.sbatch
 
 set -euo pipefail
 
